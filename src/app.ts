@@ -6,6 +6,7 @@ import { router } from './routes.js';
 
 const app = Express()
 
+app.use(Express.json())
 app.use(router)
 
 app.listen(3000, async () => {
