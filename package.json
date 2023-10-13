@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": ""
+    "test": "",
+    "build": "tsc",
+    "dev": "node dist/src/app.js"
   },
   "author": "9akashnp8",
   "license": "ISC",
