@@ -40,3 +40,13 @@ export async function deleteUser(userId: string) {
     const res = await db.query(query);
     return res;
 }
+
+export async function loginUser(userName: string, password: string) {
+    const query = {
+        text: "SELECT user_name FROM users WHERE user_name = $1 AND password = crypt($2, password);",
+        values: [userName, password]
+    }
+    const res = await db.query(query);
+    if (res.rowCount == 1 && res.rows[0].user_name === userName) return true;
+    return false;
+}
