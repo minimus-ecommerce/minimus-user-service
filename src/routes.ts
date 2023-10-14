@@ -9,9 +9,9 @@ import { loginController } from "./controllers/login/index.js"
 
 export const router = Express.Router()
 
+router.get("/", listUserController)
+router.post("/", createUserController)
+router.get("/:id", getUserController)
+router.patch("/:id", updateUserController)
+router.delete("/:id", deleteUserController)
 router.post("/login", loginController)
-router.get("/listUser", listUserController)
-router.get("/getUser/:id", getUserController)
-router.post("/createUser", createUserController)
-router.patch("/updateUser/:id", updateUserController)
-router.delete("/deleteUser/:id", deleteUserController)
