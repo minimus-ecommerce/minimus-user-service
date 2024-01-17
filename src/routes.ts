@@ -7,6 +7,8 @@ import { deleteUserController } from "./controllers/deleteUser/index.js"
 import { updateUserController } from "./controllers/updateUser/index.js"
 import { loginController } from "./controllers/login/index.js"
 
+import { authenticationMiddleWare } from "./middlewares/authentication.js"
+
 export const router = Express.Router()
 
 router.get("/", listUserController)
