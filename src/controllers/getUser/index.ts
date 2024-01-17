@@ -1,9 +1,11 @@
 import type { Request, Response } from "express";
+import { createSuccessResponse } from "@minimus-ecommerce/response";
 
 import { getUser } from "../../services/index.js";
 
 export async function getUserController(req: Request, res: Response) {
     const userId = req.params["id"]
-    const user = await getUser(userId!)
-    res.json(user)
+    // const user = await getUser(userId!)
+    // res.json(user)
+    return createSuccessResponse(res, 200, userId)
 }
