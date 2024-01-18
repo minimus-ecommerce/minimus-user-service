@@ -7,7 +7,16 @@
   "scripts": {
     "test": "",
     "build": "tsc",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/app.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/app.js\"",
+    "lint": "eslint src/**/*.ts",
+    "format": "eslint src/**/*.ts --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --parser typescript --write",
+      "npm run format"
+    ]
   },
   "author": "9akashnp8",
   "license": "ISC",
@@ -20,12 +29,19 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
+    "@9akashnp8/eslint-config-node": "^1.0.2",
     "@types/cookie-parser": "^1.4.6",
     "@types/express": "^4.17.19",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/pg": "^8.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
     "concurrently": "^8.2.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "lint-staged": "^15.2.0",
     "nodemon": "^3.0.3",
-    "typescript": "^5.2.2"
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
+    "husky": "^8.0.0"
   }
 }
