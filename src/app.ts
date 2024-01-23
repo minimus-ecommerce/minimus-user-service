@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import { createSuccessResponse } from "@minimus-ecommerce/response";
 import "dotenv/config";
 
+import { db } from "./db.js";
 import { authenticationMiddleWare } from "./middlewares/authentication.js";
 import { router } from "./routes.js";
 
@@ -14,7 +15,7 @@ app.use(cookieParser());
 router.use(authenticationMiddleWare);
 app.use("/api/user", router);
 
-app.get("/setAuthCookie", (req, res) => {
+app.get("/api/user/setAuthCookie", (req, res) => {
   const userName = "akash";
   const token = jwt.sign({ userName }, process.env.JWT_SECRET!, {
     expiresIn: "1h",
@@ -28,8 +29,9 @@ app.get("/setAuthCookie", (req, res) => {
   return createSuccessResponse(res, 200);
 });
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
   try {
+    await db.connect();
     // eslint-disable-next-line no-console
     console.log("Listening on port 3000, http://localhost:3000");
   } catch (err) {
